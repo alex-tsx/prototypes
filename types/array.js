@@ -10,21 +10,30 @@ Object.defineProperty(Array.prototype, 'last', {
 //     });
 //     return sifted;
 // }
-// Array.prototype.remove = function(item) { // || delete()
-//     const i = this.indexOf(item);
-//     if(i > -1) this.splice(i, 1); // do we need to check if i > -1 ???!!!!!
-//     //
-//     return i;
-// };
-Object.defineProperty(Array.prototype, 'remove', {
+Object.defineProperty(Array.prototype, 'remove', { // || delete()
     writable: false, // defaults to false ??!!!
     configurable: false, // defaults to false ??!!!
     enumerable: false, // defaults to false ??!!!
-    value: function(item) { // || delete()
-        const i = this.indexOf(item);
-        if(i > -1) this.splice(i, 1); // do we need to check if i > -1 ???!!!!!
+    value: function(item, abstract=false) {
+        let index;
+        if(abstract) for(let i = 0; i < this.length; i++) if(this[i] == item) index = i;
+        else for(let i = 0; i < this.length; i++) if(this[i] === item) index = i;
         //
-        return i;
+        if(index > -1) this.splice(index, 1); // do we need to check if index > -1 ???!!!!!
+        //
+        return index;
+    }
+});
+Object.defineProperty(Array.prototype, 'findAndRemove', { // || pullout
+    writable: false, // defaults to false ??!!!
+    configurable: false, // defaults to false ??!!!
+    enumerable: false, // defaults to false ??!!!
+    value: function(cond) {
+        const i = this.findIndex(cond);
+        const elem = this[i];
+        if(i > -1) this.splice(i, 1);
+        //
+        return elem;
     }
 });
 // Array.prototype.call = function(func, ...rest){
@@ -34,9 +43,11 @@ Object.defineProperty(Array.prototype, 'calc', {
     writable: false, // defaults to false ??!!!
     configurable: false, // defaults to false ??!!!
     enumerable: false, // defaults to false ??!!!
-    value: function(word) {
+    value: function(word, abstract=false) {
         let counts = 0;
-        for(let i = 0; i < this.length; i++) if(this[i] == word) counts++;
+        if(abstract) for(let i = 0; i < this.length; i++) if(this[i] == word) counts++;
+        else for(let i = 0; i < this.length; i++) if(this[i] === word) counts++;
+        //
         return counts;
     }
 });
@@ -47,6 +58,7 @@ Object.defineProperty(Array.prototype, 'count', {
     value: function(cond) {
         let counts = 0;
         for(let i = 0; i < this.length; i++) if(cond(this[i])) counts++;
+        //
         return counts;
     }
 });
