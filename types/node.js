@@ -1,8 +1,8 @@
 // Node.PROTOTYPE
 Object.defineProperty(Node.prototype, 'insert', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function(node, index) {
         if(arguments.length < 2) this.appendChild(node);
         else if(index) {
@@ -15,9 +15,9 @@ Object.defineProperty(Node.prototype, 'insert', {
     }
 });
 Object.defineProperty(Node.prototype, 'inset', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function() {
         this.innerHTML = null;
         this.append(...arguments);
@@ -26,9 +26,9 @@ Object.defineProperty(Node.prototype, 'inset', {
     }
 });
 Object.defineProperty(Node.prototype, 'isInPage', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function() {
         // return (this === document.body) ? false : document.body.contains(this);
         return document.body.contains(this);

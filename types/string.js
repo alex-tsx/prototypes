@@ -1,6 +1,6 @@
 // String.PROTOTYPE
 Object.defineProperty(String.prototype, 'elem', {
-    enumerable: false, // defaults to false ??!!!
+    enumerable: false,
     get: function() {
         let tempElem = document.createElement('div');
         // tempElem.insertAdjacentHTML('afterbegin', this); // .trim() - to not return a text node of whitespace
@@ -14,7 +14,7 @@ Object.defineProperty(String.prototype, 'elem', {
 //     return Array.from(tempElem.content.children);
 // }
 Object.defineProperty(String.prototype, 'elems', {
-    enumerable: false, // defaults to false ??!!!
+    enumerable: false,
     get: function() {
         let tempElem = document.createElement('div');
         tempElem.innerHTML = this.trim(); // .trim() - to not return a text node of whitespace

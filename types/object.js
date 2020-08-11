@@ -1,17 +1,28 @@
 // Object.PROTOTYPE
+
+Object.defineProperty(Object.prototype, 'clear', {
+    writable: true, // - `false` won't let set `clear` property on ANY object at all
+    configurable: false,
+    enumerable: false,
+    value: function() {
+        if(this.constructor === Object) for(let key in this) if(this.hasOwnProperty(key)) delete this[key];
+    }
+});
+
 /* Returns a deep clone of an object */
 Object.defineProperty(Object.prototype, 'clone', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: true,
+    configurable: false,
+    enumerable: false,
     value: function() {
         return JSON.parse( JSON.stringify(this) );
     }
 });
-Object.defineProperty(Object.prototype, 'subcopy', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+
+Object.defineProperty(Object.prototype, 'extractOf', { // || subcopy || extract
+    writable: true,
+    configurable: false,
+    enumerable: false,
     value: function() {
         const copy = {};
         for(let param of arguments) copy[param] = this[param];
@@ -19,13 +30,14 @@ Object.defineProperty(Object.prototype, 'subcopy', {
         return copy;
     }
 });
+
 /* Analogous to dojo.getObject
-* Warning: cannot have this method named 'get'
+* WARNING: cannot have this method named 'get'
 */
 Object.defineProperty(Object.prototype, 'goGet', { // || 'gett' || 'doGet'
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: true,
+    configurable: false,
+    enumerable: false,
     value: function(parameter, create) {
         const trace = parameter.split('.');
         let result = this;
@@ -42,11 +54,12 @@ Object.defineProperty(Object.prototype, 'goGet', { // || 'gett' || 'doGet'
         return result === this ? undefined : result;
     }
 });
+
 /* Analogous to dojo.setObject */
 Object.defineProperty(Object.prototype, 'goSet', { // || 'sett' || 'doSet'
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: true,
+    configurable: false,
+    enumerable: false,
     value: function(parameter, value) {
         const trace = parameter.split('.');
         const name = trace.pop();
@@ -61,5 +74,19 @@ Object.defineProperty(Object.prototype, 'goSet', { // || 'sett' || 'doSet'
         param[name] = value;
         //
         return this;
+    }
+});
+
+Object.defineProperty(Object.prototype, 'callTo', { // || 'to' || 'call'
+    writable: true,
+    configurable: false,
+    enumerable: false,
+    value: function(topic, data) {
+        if(this.hasOwnProperty(topic) && this[topic] instanceof Function) {
+            // return this[topic](data);
+            try { return this[topic](data); }
+            catch(error) { console.error(error); }
+        }
+        else console.error(`[PROTO][Object.prototype.callTo] Topic not found`);
     }
 });

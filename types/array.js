@@ -1,6 +1,7 @@
 // Array.PROTOTYPE
 Object.defineProperty(Array.prototype, 'last', {
-    enumerable: false, // defaults to false ??!!!
+    configurable: false,
+    enumerable: false,
     get: function() { return this[this.length - 1]; }
 });
 // Array.prototype.sift = function(cond) {
@@ -11,13 +12,17 @@ Object.defineProperty(Array.prototype, 'last', {
 //     return sifted;
 // }
 Object.defineProperty(Array.prototype, 'remove', { // || delete()
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function(item, abstract=false) {
         let index;
-        if(abstract) for(let i = 0; i < this.length; i++) if(this[i] == item) index = i;
-        else for(let i = 0; i < this.length; i++) if(this[i] === item) index = i;
+        if(abstract) {
+            for(let i = 0; i < this.length; i++) { if(this[i] == item) index = i; }
+        }
+        else {
+            for(let i = 0; i < this.length; i++) { if(this[i] === item) index = i; }
+        }
         //
         if(index > -1) this.splice(index, 1); // do we need to check if index > -1 ???!!!!!
         //
@@ -25,9 +30,9 @@ Object.defineProperty(Array.prototype, 'remove', { // || delete()
     }
 });
 Object.defineProperty(Array.prototype, 'findAndRemove', { // || pullout
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function(cond) {
         const i = this.findIndex(cond);
         const elem = this[i];
@@ -40,34 +45,38 @@ Object.defineProperty(Array.prototype, 'findAndRemove', { // || pullout
 //     this.forEach(e => { e[func](...rest); })
 // }
 Object.defineProperty(Array.prototype, 'calc', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function(word, abstract=false) {
         let counts = 0;
-        if(abstract) for(let i = 0; i < this.length; i++) if(this[i] == word) counts++;
-        else for(let i = 0; i < this.length; i++) if(this[i] === word) counts++;
+        if(abstract) {
+            for(let i = 0; i < this.length; i++) { if(this[i] == word) counts++; }
+        }
+        else {
+            for(let i = 0; i < this.length; i++) { if(this[i] === word) counts++; }
+        }
         //
         return counts;
     }
 });
 Object.defineProperty(Array.prototype, 'count', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: function(cond) {
         let counts = 0;
-        for(let i = 0; i < this.length; i++) if(cond(this[i])) counts++;
+        for(let i = 0; i < this.length; i++) { if(cond(this[i])) counts++; }
         //
         return counts;
     }
 });
 Object.defineProperty(Array.prototype, 'asyncForEach', {
-    writable: false, // defaults to false ??!!!
-    configurable: false, // defaults to false ??!!!
-    enumerable: false, // defaults to false ??!!!
+    writable: false,
+    configurable: false,
+    enumerable: false,
     value: async function(callback) {
-        for(let i = 0; i < this.length; i++) await callback(this[i], i, this);
+        for(let i = 0; i < this.length; i++) { await callback(this[i], i, this); }
     }
 });
 // Array.prototype.call = function(func, ...rest){
