@@ -1,5 +1,10 @@
-// Node.PROTOTYPE
-Object.defineProperty(Node.prototype, 'insert', {
+//// IMPORT
+import {defineProperty} from "../utils.js";
+
+
+//// Node.PROTOTYPE
+
+defineProperty(Node.prototype, 'insert', {
     writable: false,
     configurable: false,
     enumerable: false,
@@ -14,7 +19,7 @@ Object.defineProperty(Node.prototype, 'insert', {
         // return ???
     }
 });
-Object.defineProperty(Node.prototype, 'inset', {
+defineProperty(Node.prototype, 'inset', {
     writable: false,
     configurable: false,
     enumerable: false,
@@ -25,7 +30,7 @@ Object.defineProperty(Node.prototype, 'inset', {
         // return ???
     }
 });
-Object.defineProperty(Node.prototype, 'isInPage', {
+defineProperty(Node.prototype, 'isInPage', {
     writable: false,
     configurable: false,
     enumerable: false,

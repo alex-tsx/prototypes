@@ -1,5 +1,10 @@
-// Function.PROTOTYPE
-Object.defineProperty(Function.prototype, 'oncer', {
+//// IMPORT
+import {defineProperty} from "../utils.js";
+
+
+//// Function.PROTOTYPE
+
+defineProperty(Function.prototype, 'oncer', {
     get: function() {
         return function() {
             if(this.called) console.warn(`[Function.PROTOTYPE.oncer] Function already called`);
@@ -8,14 +13,14 @@ Object.defineProperty(Function.prototype, 'oncer', {
     }
 });
 /* Turns function into one, that loggs itself, not executes */
-Object.defineProperty(Function.prototype, 'logger', {
+defineProperty(Function.prototype, 'logger', {
     get: function() {
         return function() {
             console.log(`[Function.PROTOTYPE.logger] ${this.name} with`, arguments);
         }.bind(this);
     }
 });
-Object.defineProperty(Function.prototype, 'time', {
+defineProperty(Function.prototype, 'time', {
     value: function() {
         const start = Date.now();
         this(...arguments);
@@ -24,7 +29,7 @@ Object.defineProperty(Function.prototype, 'time', {
     }
 });
 /* Avearge time of the function execution, based on runsN calls */
-Object.defineProperty(Function.prototype, 'atime', {
+defineProperty(Function.prototype, 'atime', {
     value: function(runsN, ...args) {
         const start = Date.now();
         for(let i = 0; i < runsN; i++) this(...args);
@@ -39,7 +44,7 @@ Object.defineProperty(Function.prototype, 'atime', {
 * }
 * WARNING: Never used/called/tested
 */
-Object.defineProperty(Function.prototype, 'debounce', {
+defineProperty(Function.prototype, 'debounce', {
     value: function(wait=0) {
         const thisFunction = this;
         let timeoutId;

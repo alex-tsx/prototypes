@@ -1,4 +1,8 @@
-// Element.PROTOTYPE
+//// IMPORT
+// import {defineProperty} from "../utils.js";
+
+
+//// Element.PROTOTYPE
 Element.prototype.elems = function(singles, collections) {
     let $temp = {elem: this};
     // [ singles ]

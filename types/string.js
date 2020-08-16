@@ -1,5 +1,10 @@
-// String.PROTOTYPE
-Object.defineProperty(String.prototype, 'elem', {
+//// IMPORT
+import {defineProperty} from "../utils.js";
+
+
+//// String.PROTOTYPE
+
+defineProperty(String.prototype, 'elem', {
     enumerable: false,
     get: function() {
         let tempElem = document.createElement('div');
@@ -13,7 +18,7 @@ Object.defineProperty(String.prototype, 'elem', {
 //     tempElem.innerHTML = this; // .trim() - to not return a text node of whitespace
 //     return Array.from(tempElem.content.children);
 // }
-Object.defineProperty(String.prototype, 'elems', {
+defineProperty(String.prototype, 'elems', {
     enumerable: false,
     get: function() {
         let tempElem = document.createElement('div');

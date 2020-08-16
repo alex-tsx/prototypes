@@ -1,6 +1,10 @@
-// Object.PROTOTYPE
+//// IMPORT
+import {defineProperty} from "../utils.js";
 
-Object.defineProperty(Object.prototype, 'clear', {
+
+//// Object.PROTOTYPE
+
+defineProperty(Object.prototype, 'clear', {
     writable: true, // - `false` won't let set `clear` property on ANY object at all
     configurable: false,
     enumerable: false,
@@ -10,7 +14,7 @@ Object.defineProperty(Object.prototype, 'clear', {
 });
 
 /* Returns a deep clone of an object */
-Object.defineProperty(Object.prototype, 'clone', {
+defineProperty(Object.prototype, 'clone', {
     writable: true,
     configurable: false,
     enumerable: false,
@@ -19,7 +23,7 @@ Object.defineProperty(Object.prototype, 'clone', {
     }
 });
 
-Object.defineProperty(Object.prototype, 'extractOf', { // || subcopy || extract
+defineProperty(Object.prototype, 'extractOf', { // || subcopy || extract
     writable: true,
     configurable: false,
     enumerable: false,
@@ -34,7 +38,7 @@ Object.defineProperty(Object.prototype, 'extractOf', { // || subcopy || extract
 /* Analogous to dojo.getObject
 * WARNING: cannot have this method named 'get'
 */
-Object.defineProperty(Object.prototype, 'goGet', { // || 'gett' || 'doGet'
+defineProperty(Object.prototype, 'goGet', { // || 'gett' || 'doGet'
     writable: true,
     configurable: false,
     enumerable: false,
@@ -56,7 +60,7 @@ Object.defineProperty(Object.prototype, 'goGet', { // || 'gett' || 'doGet'
 });
 
 /* Analogous to dojo.setObject */
-Object.defineProperty(Object.prototype, 'goSet', { // || 'sett' || 'doSet'
+defineProperty(Object.prototype, 'goSet', { // || 'sett' || 'doSet'
     writable: true,
     configurable: false,
     enumerable: false,
@@ -77,7 +81,7 @@ Object.defineProperty(Object.prototype, 'goSet', { // || 'sett' || 'doSet'
     }
 });
 
-Object.defineProperty(Object.prototype, 'callTo', { // || 'to' || 'call'
+defineProperty(Object.prototype, 'callTo', { // || 'to' || 'call'
     writable: true,
     configurable: false,
     enumerable: false,

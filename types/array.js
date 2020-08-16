@@ -1,5 +1,9 @@
-// Array.PROTOTYPE
-Object.defineProperty(Array.prototype, 'last', {
+//// IMPORT
+import {defineProperty} from "../utils.js";
+
+
+//// Array.PROTOTYPE
+defineProperty(Array.prototype, 'last', {
     configurable: false,
     enumerable: false,
     get: function() { return this[this.length - 1]; }
@@ -11,7 +15,7 @@ Object.defineProperty(Array.prototype, 'last', {
 //     });
 //     return sifted;
 // }
-Object.defineProperty(Array.prototype, 'remove', { // || delete()
+defineProperty(Array.prototype, 'remove', { // || delete()
     writable: false,
     configurable: false,
     enumerable: false,
@@ -29,7 +33,7 @@ Object.defineProperty(Array.prototype, 'remove', { // || delete()
         return index;
     }
 });
-Object.defineProperty(Array.prototype, 'findAndRemove', { // || pullout
+defineProperty(Array.prototype, 'findAndRemove', { // || pullout
     writable: false,
     configurable: false,
     enumerable: false,
@@ -44,7 +48,7 @@ Object.defineProperty(Array.prototype, 'findAndRemove', { // || pullout
 // Array.prototype.call = function(func, ...rest){
 //     this.forEach(e => { e[func](...rest); })
 // }
-Object.defineProperty(Array.prototype, 'calc', {
+defineProperty(Array.prototype, 'calc', {
     writable: false,
     configurable: false,
     enumerable: false,
@@ -60,7 +64,7 @@ Object.defineProperty(Array.prototype, 'calc', {
         return counts;
     }
 });
-Object.defineProperty(Array.prototype, 'count', {
+defineProperty(Array.prototype, 'count', {
     writable: false,
     configurable: false,
     enumerable: false,
@@ -71,7 +75,7 @@ Object.defineProperty(Array.prototype, 'count', {
         return counts;
     }
 });
-Object.defineProperty(Array.prototype, 'asyncForEach', {
+defineProperty(Array.prototype, 'asyncForEach', {
     writable: false,
     configurable: false,
     enumerable: false,
