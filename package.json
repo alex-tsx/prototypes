@@ -1,0 +1,17 @@
+{
+	"name": "@tabit/prototypes",
+	"version": "2.0.2",
+	"sideEffects": true,
+	"main": "api.js",
+	"_types": "types.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"_preversion": "npm test",
+		"_version": "npm run build && git add -A dist",
+		"postversion": "git push && git push --tags"
+	},
+	"author": {
+		"name": "Alex Seleznov",
+		"email": "alex.seleznov@gmail.com"
+	}
+}
